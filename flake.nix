@@ -1,60 +1,93 @@
+###################################################################################################
+# flake.nix --- the heart of my dotfiles
+#
+# Author:  Gustavo Alvarado <igoutta@protonmail.com>
+# URL:     https://github.com/igoutta/nixos-dotfiles
+# License: MIT
+#
+# Ground zero. Where the whole flake gets set up and all its modules are loaded.
+###################################################################################################
+
 {
-  description = "GA NixOS configuration";
+  description = "GA NixOS configuration.";
+
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
 
   inputs = {
-	  nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-	  nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-	  chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # Core dependecies
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-edge.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    #helix.url = "github:helix-editor/helix";
+    # Side dependencies
+    plasma-manager.url = "github:nix-community/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/ba6fab29768007e9f2657014a6e134637100c57d";
+
+    # Extras
+    catppuccin-bat.url = "github:catppuccin/bat";
+    catppuccin-bat.flake = false;
+
+    eza-themes.url = "github:eza-community/eza-themes";
+    eza-themes.flake = false;
+
+    # Apps
+    ghostty.url = "github:ghostty-org/ghostty";
+
+    helix.url = "github:helix-editor/helix";
+
+    blender-bin.url = "github:edolstra/nix-warez?dir=blender";
+    blender-bin.inputs.nixpkgs.follows = "nixpkgs-edge";
+
+    # Nixos User Repository
+    nur.url = "github:nix-community/NUR";
+
+    nix-webapps.url = "github:TLATER/nix-webapps";
+
+    nixpak.url = "github:nixpak/nixpak";
+    nixpak.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Simplify System Configuration
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
+
+    import-tree.url = "github:vic/import-tree";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    make-shell.url = "github:nicknovitski/make-shell";
+
+    git-hooks.url = "github:cachix/git-hooks.nix";
+
+    systems.url = "github:nix-systems/default";
+
+    haumea.url = "github:nix-community/haumea/v0.2.2";
+    haumea.inputs.nixpkgs.follows = "nixpkgs";
+
+    # System Generators
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+    
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
   };
 
-  outputs = inputs@{
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    chaotic,
-    nixos-hardware,
-    home-manager, ... }: {
-    # Please replace my-nixos with your hostname
-    nixosConfigurations = {
-      ga = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-	      specialArgs = {
-	        pkgs-stable = import nixpkgs-stable {
-            inherit system;
-            config.allowUnfree = true;
-          };
-        };
-        modules = [
-          # Import the previous configuration.nix we used,
-          # so the old configuration file still takes effect
-          ./configuration.nix
-          #nixos-hardware.nixosModules.asus-fx506hm
-          chaotic.nixosModules.default
-          #./hosts/asus-tuf
-          ./modules
-          ./modules/virtualization
-          # make home-manager as a module of nixos
-          # so that home-manager configuration will be 
-          # deployed automatically when executing `nixos-rebuild switch`
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.ga = import ./home.nix;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-          }
-        ];
-      };
-    };
-  };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
+
+
