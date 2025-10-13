@@ -2,7 +2,7 @@
   flake.modules.nixos.core = {
     system.autoUpgrade = {
       enable = false;
-      # flake = "github:drupol/infra";
+      flake = "github:igoutta/nix-frastructure";
       allowReboot = true;
     };
   };

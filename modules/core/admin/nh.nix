@@ -20,8 +20,8 @@
   };
 
   perSystem =
-    { pkgs, ... }:
-    {
-      make-shells.default.packages = with pkgs; [ nh ];
-    };
+  { pkgs, ... }:
+  {
+    make-shells.default.packages = with pkgs; [ nh ];
+  };
 }

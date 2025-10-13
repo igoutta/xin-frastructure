@@ -2,7 +2,7 @@
 # flake.nix --- the heart of my dotfiles
 #
 # Author:  Gustavo Alvarado <igoutta@protonmail.com>
-# URL:     https://github.com/igoutta/nixos-dotfiles
+# URL:     https://github.com/igoutta/nix-frastructure
 # License: MIT
 #
 # Ground zero. Where the whole flake gets set up and all its modules are loaded.
@@ -26,16 +26,22 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-edge.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Side dependencies
+    nixos-hardware.url = "github:NixOS/nixos-hardware/ba6fab29768007e9f2657014a6e134637100c57d";
+    
+    # Secrets and authentification for repositories
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-auth.url = "github:numtide/nix-auth";
+
+    # Desktop environment
     plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/ba6fab29768007e9f2657014a6e134637100c57d";
 
     # Extras
     catppuccin-bat.url = "github:catppuccin/bat";
@@ -79,6 +85,8 @@
 
     haumea.url = "github:nix-community/haumea/v0.2.2";
     haumea.inputs.nixpkgs.follows = "nixpkgs";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
 
     # System Generators
     nixos-generators.url = "github:nix-community/nixos-generators";

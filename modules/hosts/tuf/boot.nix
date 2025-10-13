@@ -17,7 +17,7 @@
             wallpaperStyle = "streched";
             interface = {
               resolution = "1920x1080";
-              helpHidden = true;
+              helpHidden = lib.mkForce true;
               branding = "GA.";
               brandingColor = 7; # White
             };

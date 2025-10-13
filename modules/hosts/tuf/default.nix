@@ -8,7 +8,8 @@
     [
       # Modules
       core
-      facter
+      hardware
+      firmware
       audio
       bluetooth
       printing
@@ -17,9 +18,8 @@
       vpn
       virtualisation
       development
-      environments.graphical
-      environments.runtime
-      environments.terminal
+      gui
+      terminal
 
       # Users
       root
@@ -30,12 +30,11 @@
       {
         home-manager.users.ga.imports = with config.flake.modules.homeManager; [
           core
-          facter
+          hardware
           development
-          environments.graphical
-          environments.runtime
-          environments.terminal
-          onedrive
+          gui
+          terminal
+          cloud
         ];
       }
     ];

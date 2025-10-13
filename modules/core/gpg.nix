@@ -6,9 +6,9 @@ topLevel: {
         programs = {
           gpg = {
             enable = true;
-            # settings = { #TODO
-            #   default-key = topLevel.config.flake.meta.users.${config.home.username}.key;
-            # };
+            settings = { #TODO
+              default-key = topLevel.config.flake.meta.users.${config.home.username}.key;
+            };
           };
         };
 
@@ -16,7 +16,7 @@ topLevel: {
           gpg-agent = {
             enable = true;
             enableSshSupport = true;
-            # sshKeys = topLevel.config.flake.meta.users.${config.home.username}.keygrip; #TODO
+            sshKeys = topLevel.config.flake.meta.users.${config.home.username}.keygrip; #TODO
           };
         };
       };
