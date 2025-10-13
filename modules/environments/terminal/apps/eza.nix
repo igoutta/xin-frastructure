@@ -13,7 +13,7 @@
           colors = "always";
           git = true;
           icons = "auto";
-          theme = ${inputs.eza-themes}/themes/rose-pine-moon.yml; #TODO: CRASH
+          theme = (builtins.readFile "${inputs.eza-themes}/themes/rose-pine-moon.yml"); #TODO: CRASH
         };
       };
     };
