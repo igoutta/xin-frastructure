@@ -1,9 +1,11 @@
 {
   flake.modules = {
-    homeManager.terminal = {
+    homeManager.terminal = 
+    { pkgs, ... }:
+    {
       home.packages = with pkgs; [
         doge
-        microfetch
+        microfetch #TODO: edit config
       ];
 
       programs.fastfetch.enable = true;
