@@ -3,11 +3,7 @@
     nixos.displaylink = 
     { config, pkgs, ... }:
     {
-      services = {
-        xserver = {
-          videoDrivers = [ "displaylink" ];
-        };
-      };
+      services.xserver.videoDrivers = [ "displaylink" ];
 
       boot = {
         extraModulePackages = [ config.boot.kernelPackages.evdi ];

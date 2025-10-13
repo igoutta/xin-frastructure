@@ -5,13 +5,15 @@
 }:
 {
   flake.modules = {
-    nixos.gui = {
+    nixos.gui = 
+      { pkgs, ... }:
+      {
       systemd.user.services.flameshot = {
         environment = {
           QT_QPA_PLATFORM = "xcb";
         };
         serviceConfig = {
-          ExecStart = "QT_QPA_PLATFORM=xcb flameshot";
+          ExecStart = "QT_QPA_PLATFORM=xcb ${pkgs.flameshot}/bin/flameshot";
         };
       };
     };
@@ -21,15 +23,17 @@
     {
       services.flameshot = {
         enable = true;
-        settings.General = {
-          copyOnDoubleClick = true;
-          savePath = "${config.home.homeDirectory}/Pictures/Screenshots";
-          savePathFixed = true;
-          autoCloseIdleDaemon = true;
-          startupLaunch = false;
-          saveAsFileExtension = ".png";
-          showStartupLaunchMessage = false;
-          saveLastRegion = true;
+        settings = {
+          General = {
+            copyOnDoubleClick = true;
+            savePath = "${config.home.homeDirectory}/Pictures/Screenshots";
+            savePathFixed = true;
+            autoCloseIdleDaemon = true;
+            startupLaunch = false;
+            saveAsFileExtension = ".png";
+            showStartupLaunchMessage = false;
+            saveLastRegion = true;
+          };
         };
       };
     };

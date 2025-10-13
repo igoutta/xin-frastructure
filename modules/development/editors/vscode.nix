@@ -7,7 +7,7 @@
     nixos.development = {
       services = {
         # needed for store VS Code auth token
-        gnome.gnome-keyring.enable = true;
+        gnome-keyring.enable = true;
       };
     };
 

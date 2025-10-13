@@ -11,6 +11,6 @@
     boot.kernelModules = [ "i2c-dev" ];
     hardware.i2c.enable = true;
     services.udev.packages = [ pkgs.openrgb ];
-    services.hardware.openrgb.enable = true;
+    services.hardware.openrgb.enable = true; #TODO: pakacge mkoverride with plugin openrgb-plugin-hardwaresync
   };
 }
