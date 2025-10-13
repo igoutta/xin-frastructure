@@ -1,6 +1,8 @@
 {
   flake.modules = {
-    homeManager.terminal = {
+    homeManager.terminal = 
+    { pkgs, ... }:
+    {
       programs.helix = {
         enable = true;
         settings = {
