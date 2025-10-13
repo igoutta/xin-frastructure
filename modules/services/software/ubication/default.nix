@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   flake.modules.nixos.ubication = {
     options.location = {
