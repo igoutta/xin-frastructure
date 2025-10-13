@@ -9,7 +9,7 @@
         wget
         curl
         wireguard-tools
-      ];
+      ]; #TODO: make shells
     };
 
     homeManager.gui = {
@@ -139,7 +139,6 @@
 
         rustdesk
       ];
-
-    }
+    };
   };
 }
