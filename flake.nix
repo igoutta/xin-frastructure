@@ -83,6 +83,10 @@
 
     systems.url = "github:nix-systems/default";
 
+    lazy-apps.url = "sourcehut:~rycee/lazy-apps";
+    lazy-apps.inputs.nixpkgs.follows = "nixpkgs";
+    
+    # File system tools (TODO: use only what is needed)
     haumea.url = "github:nix-community/haumea/v0.2.2";
     haumea.inputs.nixpkgs.follows = "nixpkgs";
 
