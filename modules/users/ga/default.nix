@@ -27,14 +27,23 @@
           isNormalUser = true;
           createHome = true;
           extraGroups = [
-            "audio"
-            "input"
-            "libvirtd"
-            "network"
-            "networkmanager"
-            "sound"
-            "tty"
             "wheel"
+
+            "audio"
+            "sound"
+
+            "input"
+
+            "libvirtd" # virt-viewer / qemu
+
+            "network"
+            "networkmanager" # for nmtui / nm-connection-editor
+            "wireshark"
+
+            "tty"
+
+            "adbusers" # Android Debug access group
+            "kvm" #TODO: measure CPU consume
           ];
           shell = pkgs.zsh;
           environment.pathsToLink = [ "/share/zsh" ];

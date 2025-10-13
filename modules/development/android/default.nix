@@ -2,10 +2,6 @@ topLevel: {
   flake.modules = {
     nixos.development = {
       programs.adb.enable = true;
-      users.users.${topLevel.config.flake.meta.users.${config.home.username}}.extraGroups = [
-        "adbusers"
-        "kvm" #TODO: measure CPU consume
-      ];
     };
 
     homeManager.development =
