@@ -12,7 +12,9 @@
       ]; #TODO: make shells
     };
 
-    homeManager.gui = {
+    homeManager.gui =     
+    { pkgs, ... }:
+    {
       home.packages = with pkgs; [
         #vkd3d
         #protontricks
