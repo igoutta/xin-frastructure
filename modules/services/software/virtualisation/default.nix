@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.virtualisation = 
+  flake.modules.nixos.containing = 
   { pkgs, ... }: 
   {
     virtualisation = {

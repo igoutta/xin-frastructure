@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.virtualisation = 
+  flake.modules.homeManager.containing = 
     { pkgs, ... }:
     {
     home.packages = with pkgs; [

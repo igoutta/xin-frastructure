@@ -16,7 +16,7 @@
       ubication
       ssh
       vpn
-      virtualisation
+      containing
       development
       gui
       terminal
@@ -34,6 +34,7 @@
           development
           gui
           terminal
+          containing
           cloud
         ];
       }

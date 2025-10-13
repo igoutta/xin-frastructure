@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos."hosts/apollo" = {
+  flake.modules.nixos."hosts/tuf" = {
     fileSystems."/" =
       { device = "/dev/disk/by-uuid/1e335c8d-7b05-4c0e-b3b2-4a22239f8af3";
         fsType = "ext4";
