@@ -1,5 +1,7 @@
 {
-  flake.modules.homeManager.virtualisation = {
+  flake.modules.homeManager.virtualisation = 
+    { pkgs, ... }:
+    {
     home.packages = with pkgs; [
       wineWowPackages.yabridge
       wineWowPackages.fonts
