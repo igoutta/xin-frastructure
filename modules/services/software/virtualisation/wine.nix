@@ -5,6 +5,6 @@
       wineWowPackages.fonts
       winetricks
       q4wine
-    ];
+    ]; #TODO: make shells and settings
   };
 }
