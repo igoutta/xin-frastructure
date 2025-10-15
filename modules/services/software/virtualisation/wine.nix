@@ -6,7 +6,7 @@
       wineWowPackages.yabridge
       wineWowPackages.fonts
       winetricks
-      q4wine
+      # q4wine # CMAKE 3.5 issue
     ]; #TODO: make shells and settings
 
     programs.lutris.enable = true;

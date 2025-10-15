@@ -39,12 +39,12 @@
         photoqt
         #tacentview
         rapid-photo-downloader
-        qstopmotion
+        # qstopmotion # CMAKE 3.5 issue
         
         # camera media
         tuicam
         cameractrls-gtk4
-        cameradar # RTSP stream access tool
+        # cameradar # BROKEN ATM # RTSP stream access tool
 
         #creative
         inkscape-with-extensions
@@ -125,7 +125,7 @@
         arduino-language-server
         teensyduino
         wiringpi
-        fritzing
+        # fritzing # CMAKE 3.5 issue
         simulide_1_2_0
 
         # drones
@@ -139,7 +139,7 @@
         # Containers    
         kail # Kubernets CLI manager
 
-        rustdesk
+        # rustdesk #TODO: BLOATED BUILD 
       ];
     };
   };

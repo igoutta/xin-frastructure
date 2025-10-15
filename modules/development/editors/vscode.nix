@@ -5,10 +5,8 @@
 {
   flake.modules = {
     nixos.development = {
-      services = {
         # needed for store VS Code auth token
-        gnome-keyring.enable = true;
-      };
+        services.gnome.gnome-keyring.enable = true;
     };
 
     homeManager.development =

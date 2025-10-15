@@ -10,7 +10,9 @@
       "modesetting"
       "nvidia"
     ];
-
+    
+    #boot.kernelParams = [ "i915.enable_gvt=1" ]; # Intel GVT-g for mediated GPU sharing
+    
     hardware.graphics = {
       enable = true;
       enable32Bit = true;

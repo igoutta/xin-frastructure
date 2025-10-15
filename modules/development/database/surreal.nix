@@ -19,7 +19,10 @@
     homeManager.development =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [ surrealist surrealdb-migrations ];
+      home.packages = with pkgs; [ 
+        surrealist 
+        surrealdb-migrations 
+      ];
     };
   };
 }
